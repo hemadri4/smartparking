@@ -108,16 +108,9 @@ TEMPLATES = [
 ]
 
 
-# --------------------------------------------------
-# WSGI
-# --------------------------------------------------
-
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 
-# --------------------------------------------------
-# DATABASE
-# --------------------------------------------------
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -126,13 +119,15 @@ DATABASES = {
         'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': os.getenv('DB_HOST'),
         'PORT': os.getenv('DB_PORT'),
+        'OPTIONS': {
+            'ssl': {
+                'ca': str(BASE_DIR / 'ca.pem'),
+            }
+        },
     }
 }
 
 
-# --------------------------------------------------
-# CUSTOM USER MODEL
-# --------------------------------------------------
 
 AUTH_USER_MODEL = 'parking.User'
 
