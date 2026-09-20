@@ -115,6 +115,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
 
                 'django.contrib.messages.context_processors.messages',
+
             ],
         },
     },
@@ -246,9 +247,12 @@ LOGIN_URL = '/login/'
 
 CORS_ALLOWED_ORIGINS = [
 
+    # Local React
     'http://localhost:5173',
-
     'http://127.0.0.1:5173',
+
+    # Production React - Render
+    'https://smartparking-frontend-hemadri.onrender.com',
 
 ]
 
@@ -261,9 +265,12 @@ CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = [
 
+    # Local React
     'http://localhost:5173',
-
     'http://127.0.0.1:5173',
+
+    # Production React - Render
+    'https://smartparking-frontend-hemadri.onrender.com',
 
 ]
 
