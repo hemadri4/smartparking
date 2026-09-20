@@ -260,6 +260,15 @@ CORS_ALLOW_CREDENTIALS = True
 
 
 # --------------------------------------------------
+# SESSION COOKIE - PRODUCTION
+# --------------------------------------------------
+
+SESSION_COOKIE_SAMESITE = 'None'
+
+SESSION_COOKIE_SECURE = True
+
+
+# --------------------------------------------------
 # CSRF - REACT
 # --------------------------------------------------
 
@@ -273,6 +282,15 @@ CSRF_TRUSTED_ORIGINS = [
     'https://smartparking-frontend-hemadri.onrender.com',
 
 ]
+
+
+# --------------------------------------------------
+# CSRF COOKIE - PRODUCTION
+# --------------------------------------------------
+
+CSRF_COOKIE_SAMESITE = 'None'
+
+CSRF_COOKIE_SECURE = True
 
 
 # --------------------------------------------------
