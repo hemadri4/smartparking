@@ -52,18 +52,31 @@ function OwnerParking() {
         setError("");
 
         try {
-            await api.get("/csrf/");
+            // Get CSRF token from backend
+            const csrfResponse = await api.get("/csrf/");
 
-            await api.post("/add-parking/", {
-                ...formData,
-                capacity: Number(formData.capacity),
-                latitude: Number(formData.latitude),
-                longitude: Number(formData.longitude),
-                price_per_minute: Number(formData.price_per_minute)
-            });
+            const csrfToken = csrfResponse.data.csrfToken;
+
+            // Send parking data with CSRF token
+            await api.post(
+                "/add-parking/",
+                {
+                    ...formData,
+                    capacity: Number(formData.capacity),
+                    latitude: Number(formData.latitude),
+                    longitude: Number(formData.longitude),
+                    price_per_minute: Number(formData.price_per_minute)
+                },
+                {
+                    headers: {
+                        "X-CSRFToken": csrfToken
+                    }
+                }
+            );
 
             setMessage("Parking space added successfully.");
 
+            // Clear form
             setFormData({
                 parking_name: "",
                 address: "",
@@ -75,6 +88,7 @@ function OwnerParking() {
                 description: ""
             });
 
+            // Refresh parking list
             fetchParking();
 
         } catch (err) {
@@ -111,6 +125,8 @@ function OwnerParking() {
                 )}
 
                 <div className="owner-parking-layout">
+
+                    {/* ADD PARKING FORM */}
 
                     <div className="add-parking-card">
 
@@ -215,6 +231,8 @@ function OwnerParking() {
                         </form>
 
                     </div>
+
+                    {/* PARKING LIST */}
 
                     <div className="parking-space-list">
 

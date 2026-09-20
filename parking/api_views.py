@@ -4,11 +4,13 @@ from django.contrib.auth.hashers import make_password
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+
 from django.views.decorators.csrf import ensure_csrf_cookie
+from django.middleware.csrf import get_token
+
 import random
 from django.utils import timezone
 from django.contrib.auth import logout
-
 
 from .models import User, ParkingSpace, Booking
 from .serializers import (
@@ -16,6 +18,11 @@ from .serializers import (
     ParkingSpaceSerializer,
     BookingSerializer
 )
+
+
+# =========================
+# PARKING LIST
+# =========================
 
 @api_view(['GET'])
 def parking_list_api(request):
@@ -227,15 +234,24 @@ def my_bookings_api(request):
     )
 
     return Response(serializer.data)
+
+
+# =========================
+# OWNER BOOKINGS
+# =========================
+
 @api_view(['GET'])
 def owner_bookings_api(request):
+
     if not request.user.is_authenticated:
+
         return Response(
             {'error': 'Login required'},
             status=status.HTTP_401_UNAUTHORIZED
         )
 
     if request.user.role != 'owner':
+
         return Response(
             {'error': 'Owner access required'},
             status=status.HTTP_403_FORBIDDEN
@@ -245,20 +261,30 @@ def owner_bookings_api(request):
         parking__owner=request.user
     ).order_by('-created_at')
 
-    serializer = BookingSerializer(bookings, many=True)
+    serializer = BookingSerializer(
+        bookings,
+        many=True
+    )
 
     return Response(serializer.data)
 
 
+# =========================
+# UPDATE BOOKING STATUS
+# =========================
+
 @api_view(['POST'])
 def update_booking_status_api(request, booking_id):
+
     if not request.user.is_authenticated:
+
         return Response(
             {'error': 'Login required'},
             status=status.HTTP_401_UNAUTHORIZED
         )
 
     if request.user.role != 'owner':
+
         return Response(
             {'error': 'Owner access required'},
             status=status.HTTP_403_FORBIDDEN
@@ -269,7 +295,9 @@ def update_booking_status_api(request, booking_id):
             id=booking_id,
             parking__owner=request.user
         )
+
     except Booking.DoesNotExist:
+
         return Response(
             {'error': 'Booking not found'},
             status=status.HTTP_404_NOT_FOUND
@@ -278,12 +306,14 @@ def update_booking_status_api(request, booking_id):
     new_status = request.data.get('status')
 
     if new_status not in ['confirmed', 'cancelled']:
+
         return Response(
             {'error': 'Invalid status'},
             status=status.HTTP_400_BAD_REQUEST
         )
 
     if booking.status != 'pending':
+
         return Response(
             {'error': 'Only pending bookings can be updated'},
             status=status.HTTP_400_BAD_REQUEST
@@ -296,13 +326,31 @@ def update_booking_status_api(request, booking_id):
         'message': f'Booking {new_status} successfully',
         'booking': BookingSerializer(booking).data
     })
+
+
+# =========================
+# CSRF TOKEN
+# =========================
+
 @api_view(['GET'])
 @ensure_csrf_cookie
 def csrf_api(request):
-    return Response({'message': 'CSRF cookie set'})
+
+    return Response({
+        'message': 'CSRF cookie set',
+        'csrfToken': get_token(request)
+    })
+
+
+# =========================
+# GENERATE OTP
+# =========================
+
 @api_view(['POST'])
 def generate_otp_api(request, booking_id):
+
     if not request.user.is_authenticated:
+
         return Response(
             {'error': 'Login required'},
             status=status.HTTP_401_UNAUTHORIZED
@@ -313,13 +361,16 @@ def generate_otp_api(request, booking_id):
             id=booking_id,
             user=request.user
         )
+
     except Booking.DoesNotExist:
+
         return Response(
             {'error': 'Booking not found'},
             status=status.HTTP_404_NOT_FOUND
         )
 
     if booking.status != 'confirmed':
+
         return Response(
             {'error': 'Booking is not confirmed'},
             status=status.HTTP_400_BAD_REQUEST
@@ -335,9 +386,17 @@ def generate_otp_api(request, booking_id):
         'message': 'OTP generated successfully',
         'otp': otp
     })
+
+
+# =========================
+# VERIFY OTP
+# =========================
+
 @api_view(['POST'])
 def verify_otp_api(request, booking_id):
+
     if not request.user.is_authenticated:
+
         return Response(
             {'error': 'Login required'},
             status=status.HTTP_401_UNAUTHORIZED
@@ -348,13 +407,16 @@ def verify_otp_api(request, booking_id):
             id=booking_id,
             user=request.user
         )
+
     except Booking.DoesNotExist:
+
         return Response(
             {'error': 'Booking not found'},
             status=status.HTTP_404_NOT_FOUND
         )
 
     if booking.status != 'confirmed':
+
         return Response(
             {'error': 'Booking is not confirmed'},
             status=status.HTTP_400_BAD_REQUEST
@@ -363,12 +425,14 @@ def verify_otp_api(request, booking_id):
     otp = request.data.get('otp')
 
     if not otp:
+
         return Response(
             {'error': 'OTP is required'},
             status=status.HTTP_400_BAD_REQUEST
         )
 
     if booking.otp != otp:
+
         return Response(
             {'error': 'Invalid OTP'},
             status=status.HTTP_400_BAD_REQUEST
@@ -381,38 +445,53 @@ def verify_otp_api(request, booking_id):
         'message': 'OTP verified successfully',
         'booking_id': booking.id
     })
+
+
+# =========================
+# CHECK IN
+# =========================
+
 @api_view(['POST'])
 def check_in_api(request, booking_id):
+
     if not request.user.is_authenticated:
+
         return Response(
             {'error': 'Login required'},
             status=status.HTTP_401_UNAUTHORIZED
         )
 
     try:
-        booking = Booking.objects.select_related('parking').get(
+        booking = Booking.objects.select_related(
+            'parking'
+        ).get(
             id=booking_id,
             user=request.user
         )
+
     except Booking.DoesNotExist:
+
         return Response(
             {'error': 'Booking not found'},
             status=status.HTTP_404_NOT_FOUND
         )
 
     if booking.status != 'confirmed':
+
         return Response(
             {'error': 'Booking is not confirmed'},
             status=status.HTTP_400_BAD_REQUEST
         )
 
     if not booking.otp_verified:
+
         return Response(
             {'error': 'OTP verification required'},
             status=status.HTTP_400_BAD_REQUEST
         )
 
     if booking.checked_in:
+
         return Response(
             {'error': 'Already checked in'},
             status=status.HTTP_400_BAD_REQUEST
@@ -421,6 +500,7 @@ def check_in_api(request, booking_id):
     parking = booking.parking
 
     if parking.occupied_slots >= parking.capacity:
+
         return Response(
             {'error': 'Parking is full'},
             status=status.HTTP_400_BAD_REQUEST
@@ -439,32 +519,46 @@ def check_in_api(request, booking_id):
         'check_in_time': booking.check_in_time,
         'occupied_slots': parking.occupied_slots
     })
+
+
+# =========================
+# CHECK OUT
+# =========================
+
 @api_view(['POST'])
 def check_out_api(request, booking_id):
+
     if not request.user.is_authenticated:
+
         return Response(
             {'error': 'Login required'},
             status=status.HTTP_401_UNAUTHORIZED
         )
 
     try:
-        booking = Booking.objects.select_related('parking').get(
+        booking = Booking.objects.select_related(
+            'parking'
+        ).get(
             id=booking_id,
             user=request.user
         )
+
     except Booking.DoesNotExist:
+
         return Response(
             {'error': 'Booking not found'},
             status=status.HTTP_404_NOT_FOUND
         )
 
     if not booking.checked_in:
+
         return Response(
             {'error': 'You have not checked in yet'},
             status=status.HTTP_400_BAD_REQUEST
         )
 
     if booking.checked_out:
+
         return Response(
             {'error': 'Already checked out'},
             status=status.HTTP_400_BAD_REQUEST
@@ -479,20 +573,26 @@ def check_out_api(request, booking_id):
         checkout_time - booking.check_in_time
     ).total_seconds()
 
-    total_minutes = max(1, int(total_seconds / 60))
+    total_minutes = max(
+        1,
+        int(total_seconds / 60)
+    )
 
     booking.total_minutes = total_minutes
 
     booking.total_price = (
-        total_minutes * booking.parking.price_per_minute
+        total_minutes *
+        booking.parking.price_per_minute
     )
 
     booking.status = 'completed'
+
     booking.save()
 
     parking = booking.parking
 
     if parking.occupied_slots > 0:
+
         parking.occupied_slots -= 1
         parking.save()
 
@@ -504,22 +604,38 @@ def check_out_api(request, booking_id):
         'check_out_time': booking.check_out_time,
         'occupied_slots': parking.occupied_slots
     })
+
+
+# =========================
+# LOGOUT
+# =========================
+
 @api_view(['POST'])
 def logout_api(request):
+
     logout(request)
 
     return Response({
         'message': 'Logout successful'
     })
+
+
+# =========================
+# OWNER PARKING
+# =========================
+
 @api_view(['GET'])
 def owner_parking_api(request):
+
     if not request.user.is_authenticated:
+
         return Response(
             {'error': 'Login required'},
             status=status.HTTP_401_UNAUTHORIZED
         )
 
     if request.user.role != 'owner':
+
         return Response(
             {'error': 'Owner access required'},
             status=status.HTTP_403_FORBIDDEN
@@ -535,15 +651,24 @@ def owner_parking_api(request):
     )
 
     return Response(serializer.data)
+
+
+# =========================
+# ADD PARKING
+# =========================
+
 @api_view(['POST'])
 def add_parking_api(request):
+
     if not request.user.is_authenticated:
+
         return Response(
             {'error': 'Login required'},
             status=status.HTTP_401_UNAUTHORIZED
         )
 
     if request.user.role != 'owner':
+
         return Response(
             {'error': 'Owner access required'},
             status=status.HTTP_403_FORBIDDEN
@@ -568,15 +693,24 @@ def add_parking_api(request):
         serializer.data,
         status=status.HTTP_201_CREATED
     )
+
+
+# =========================
+# GOVERNMENT DASHBOARD
+# =========================
+
 @api_view(['GET'])
 def government_dashboard_api(request):
+
     if not request.user.is_authenticated:
+
         return Response(
             {'error': 'Login required'},
             status=status.HTTP_401_UNAUTHORIZED
         )
 
     if request.user.role != 'governement':
+
         return Response(
             {'error': 'Government access required'},
             status=status.HTTP_403_FORBIDDEN
@@ -586,19 +720,27 @@ def government_dashboard_api(request):
     bookings = Booking.objects.all()
 
     total_parking = parking_spaces.count()
+
     total_capacity = sum(
-        parking.capacity for parking in parking_spaces
+        parking.capacity
+        for parking in parking_spaces
     )
+
     occupied_slots = sum(
-        parking.occupied_slots for parking in parking_spaces
+        parking.occupied_slots
+        for parking in parking_spaces
     )
+
     total_bookings = bookings.count()
+
     pending_bookings = bookings.filter(
         status='pending'
     ).count()
+
     confirmed_bookings = bookings.filter(
         status='confirmed'
     ).count()
+
     completed_bookings = bookings.filter(
         status='completed'
     ).count()
@@ -607,7 +749,9 @@ def government_dashboard_api(request):
         'total_parking_spaces': total_parking,
         'total_capacity': total_capacity,
         'occupied_slots': occupied_slots,
-        'available_slots': total_capacity - occupied_slots,
+        'available_slots': (
+            total_capacity - occupied_slots
+        ),
         'total_bookings': total_bookings,
         'pending_bookings': pending_bookings,
         'confirmed_bookings': confirmed_bookings,
