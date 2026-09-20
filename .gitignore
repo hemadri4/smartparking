@@ -7,4 +7,3 @@ node_modules/
 
 frontend/dist/
 db.sqlite3
-ca.pem
