@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Parking</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/add_parking.css' %}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Add Parking Space</h2>
+        <a href="{% url 'logout' %}">Logout</a>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <label>Parking Name</label>
+            <input type="text" name="parking_name" required>
+
+            <label>Address</label>
+            <textarea name="address" required></textarea>
+
+            <label>City</label>
+            <input type="text" name="city" required>
+
+            <label>Latitude</label>
+            <input type="number" name="latitude" step="any" required>
+
+            <label>Longitude</label>
+            <input type="number" name="longitude" step="any" required>
+
+            <label>Capacity</label>
+            <input type="number" name="capacity" min="1" required>
+
+            <label>price_per_minute</label>
+            <input type="number" name="price_per_minute" step="0.01" min="0" required>
+
+            <label>Description</label>
+            <textarea name="description"></textarea>
+
+            <button type="submit">Add Parking</button>
+
+        </form>
+
+    </div>
+
+</body>
+</html>

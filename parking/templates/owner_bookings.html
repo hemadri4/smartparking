@@ -1,0 +1,287 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Owner Bookings</title>
+
+    <link rel="stylesheet"
+          href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <a href="{% url 'owner_dashboard' %}" class="logo">
+        🚗 Smart Parking
+    </a>
+
+    <div class="nav-links">
+
+        <a href="{% url 'owner_dashboard' %}">
+            Dashboard
+        </a>
+
+        <a href="{% url 'add_parking' %}">
+            Add Parking
+        </a>
+
+        <a href="{% url 'owner_bookings' %}">
+            Bookings
+        </a>
+
+        <a href="{% url 'logout' %}">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+    <h1 class="page-title">
+        Customer Bookings
+    </h1>
+
+    <p class="page-subtitle">
+        Manage booking requests for your parking spaces.
+    </p>
+
+
+    {% for booking in bookings %}
+
+    <div class="booking-card">
+
+        <!-- PARKING -->
+
+        <h3>
+            🅿️ {{ booking.parking.parking_name }}
+        </h3>
+
+
+        <!-- CUSTOMER -->
+
+        <div class="booking-row">
+
+            <strong>Booking ID:</strong>
+            {{ booking.id }}
+
+        </div>
+
+        <div class="booking-row">
+
+            <strong>Customer:</strong>
+            {{ booking.user.username }}
+
+        </div>
+
+        <div class="booking-row">
+
+            <strong>Phone:</strong>
+            {{ booking.user.phone }}
+
+        </div>
+
+
+        <!-- BOOKING DETAILS -->
+
+        <div class="booking-row">
+
+            <strong>Date:</strong>
+            {{ booking.booking_date }}
+
+        </div>
+
+        <div class="booking-row">
+
+            <strong>Start Time:</strong>
+            {{ booking.start_time }}
+
+        </div>
+
+        <div class="booking-row">
+
+            <strong>End Time:</strong>
+            {{ booking.end_time }}
+
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div class="booking-row">
+
+            <strong>Status:</strong>
+
+            {% if booking.status == 'pending' %}
+
+                <span class="status status-pending">
+                    Pending
+                </span>
+
+            {% elif booking.status == 'confirmed' %}
+
+                <span class="status status-confirmed">
+                    Confirmed
+                </span>
+
+            {% elif booking.status == 'completed' %}
+
+                <span class="status status-completed">
+                    Completed
+                </span>
+
+            {% elif booking.status == 'cancelled' %}
+
+                <span class="status status-cancelled">
+                    Cancelled
+                </span>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- PENDING ACTIONS -->
+
+        {% if booking.status == 'pending' %}
+
+            <div class="booking-actions">
+
+                <a href="{% url 'confirm_booking' booking.id %}"
+                   class="btn btn-success">
+
+                    ✓ Confirm Booking
+
+                </a>
+
+
+                <a href="{% url 'cancel_booking' booking.id %}"
+                   class="btn btn-danger">
+
+                    ✕ Cancel Booking
+
+                </a>
+
+            </div>
+
+        {% endif %}
+
+
+        <!-- CONFIRMED -->
+
+        {% if booking.status == 'confirmed' %}
+
+            <hr>
+
+            <div class="booking-row">
+
+                <strong>OTP:</strong>
+
+                {% if booking.otp %}
+
+                    {{ booking.otp }}
+
+                {% else %}
+
+                    Not generated
+
+                {% endif %}
+
+            </div>
+
+            {% if booking.otp_verified %}
+
+                <span class="status status-completed">
+                    OTP Verified
+                </span>
+
+            {% else %}
+
+                <span class="status status-pending">
+                    OTP Not Verified
+                </span>
+
+            {% endif %}
+
+        {% endif %}
+
+
+        <!-- COMPLETED -->
+
+        {% if booking.status == 'completed' %}
+
+            <hr>
+
+            <div class="booking-row">
+
+                <strong>Check-In:</strong>
+                {{ booking.check_in_time }}
+
+            </div>
+
+            <div class="booking-row">
+
+                <strong>Check-Out:</strong>
+                {{ booking.check_out_time }}
+
+            </div>
+
+            <div class="booking-row">
+
+                <strong>Total Time:</strong>
+                {{ booking.total_minutes }} minutes
+
+            </div>
+
+            <div class="price">
+
+                ₹{{ booking.total_price }}
+
+            </div>
+
+        {% endif %}
+
+
+    </div>
+
+    {% empty %}
+
+        <div class="booking-card">
+
+            <h3>
+                No Bookings
+            </h3>
+
+            <p>
+                There are currently no customer bookings.
+            </p>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+    Smart Parking © 2026
+
+</footer>
+
+</body>
+
+</html>

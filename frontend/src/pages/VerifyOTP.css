@@ -1,0 +1,85 @@
+.verify-otp-page {
+    min-height: 100vh;
+    background: #f5f7fb;
+}
+
+.verify-otp-section {
+    min-height: calc(100vh - 75px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.verify-otp-card {
+    width: 100%;
+    max-width: 430px;
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    border: 1px solid #e5e9f0;
+    text-align: center;
+}
+
+.otp-icon {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.verify-otp-card h1 {
+    color: #172033;
+    margin-bottom: 10px;
+}
+
+.verify-otp-card > p {
+    color: #667085;
+    margin-bottom: 25px;
+}
+
+.verify-otp-card form {
+    text-align: left;
+}
+
+.verify-otp-card label {
+    display: block;
+    margin-bottom: 8px;
+    color: #344054;
+    font-weight: 600;
+}
+
+.verify-otp-card input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #d0d5dd;
+    border-radius: 8px;
+    font-size: 20px;
+    text-align: center;
+    letter-spacing: 6px;
+    margin-bottom: 20px;
+}
+
+.verify-otp-card button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    background: #1769e8;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.verify-otp-card button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.otp-error {
+    color: #d92d20;
+    background: #fef3f2;
+    padding: 10px;
+    border-radius: 7px;
+    margin-bottom: 18px;
+    font-size: 14px;
+}

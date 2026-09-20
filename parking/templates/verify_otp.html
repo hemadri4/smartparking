@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head> 
+    <title>Verify OTP</title>
+</head>
+<body>
+
+    <h1>Verify OTP</h1>
+
+    <p>Parking: {{ booking.parking.parking_name }}</p>
+
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Enter OTP:</label>
+
+        <input type="text" name="otp" maxlength="6" required>
+
+        <button type="submit">Verify OTP</button>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Owner Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <a href="{% url 'owner_dashboard' %}" class="logo">
+        🚗 Smart Parking
+    </a>
+
+    <div class="nav-links">
+
+        <a href="{% url 'owner_dashboard' %}">
+            Dashboard
+        </a>
+
+        <a href="{% url 'add_parking' %}">
+            Add Parking
+        </a>
+
+        <a href="{% url 'owner_bookings' %}">
+            Bookings
+        </a>
+
+        <a href="{% url 'logout' %}">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+    <h1 class="page-title">
+        Owner Dashboard
+    </h1>
+
+    <p class="page-subtitle">
+        Manage your parking spaces and bookings.
+    </p>
+
+
+    <!-- ACTIONS -->
+
+    <div class="booking-actions">
+
+        <a href="{% url 'add_parking' %}"
+           class="btn btn-primary">
+
+            + Add Parking Space
+
+        </a>
+
+        <a href="{% url 'owner_bookings' %}"
+           class="btn btn-secondary">
+
+            View Bookings
+
+        </a>
+
+    </div>
+
+    <br>
+
+
+    <!-- PARKING SPACES -->
+
+    <h2>
+        My Parking Spaces
+    </h2>
+
+    <br>
+
+    <div class="parking-grid">
+
+        {% for parking in parking_spaces %}
+
+        <div class="parking-card">
+
+            <h3>
+                🅿️ {{ parking.parking_name }}
+            </h3>
+
+            <p class="parking-info">
+                📍 {{ parking.address }}
+            </p>
+
+            <p class="parking-info">
+                🏙️ {{ parking.city }}
+            </p>
+
+            <p class="parking-info">
+                Total Capacity:
+                <strong>{{ parking.capacity }}</strong>
+            </p>
+
+            <p class="parking-info">
+                Occupied Slots:
+                <strong>{{ parking.occupied_slots }}</strong>
+            </p>
+
+            <p class="parking-info">
+                Available Slots:
+                <strong>
+                    {{ parking.capacity|add:"-"|add:parking.occupied_slots }}
+                </strong>
+            </p>
+
+            <p class="price">
+                ₹{{ parking.price_per_minute }}
+                <small>/ minute</small>
+            </p>
+
+
+            {% if parking.is_available %}
+
+                <span class="status status-available">
+                    Available
+                </span>
+
+            {% else %}
+
+                <span class="status status-unavailable">
+                    Not Available
+                </span>
+
+            {% endif %}
+
+        </div>
+
+        {% empty %}
+
+        <div class="booking-card">
+
+            <h3>
+                No Parking Spaces
+            </h3>
+
+            <p>
+                You haven't added any parking spaces yet.
+            </p>
+
+            <br>
+
+            <a href="{% url 'add_parking' %}"
+               class="btn btn-primary">
+
+                Add Your First Parking Space
+
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
+<footer class="footer">
+
+    Smart Parking © 2026
+
+</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Parking</title>
+</head>
+
+<body>
+
+    <h2>Book Parking</h2>
+
+    <h3>{{ parking.parking_name }}</h3>
+
+    <p>Address: {{ parking.address }}</p>
+    <p>City: {{ parking.city }}</p>
+    <p>Price: ₹{{ parking.price_per_hour }} per hour</p>
+
+    <hr>
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+{% endif %}
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <label>Booking Date:</label>
+        <br>
+        <input type="date" name="booking_date" required>
+
+        <br><br>
+
+        <label>Start Time:</label>
+        <br>
+        <input type="time" name="start_time" required>
+
+        <br><br>
+
+        <label>End Time:</label>
+        <br>
+        <input type="time" name="end_time" required>
+
+        <br><br>
+
+        <button type="submit">
+            Book Parking
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="{% url 'parking_detail' parking.id %}">
+        Back to Parking Details
+    </a>
+
+</body>
+</html>

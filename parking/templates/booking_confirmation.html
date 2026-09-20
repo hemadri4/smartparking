@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking Confirmation</title>
+</head>
+<body>
+
+    <h2>Booking Confirmed!</h2>
+
+    <p><strong>Booking ID:</strong> {{ booking.id }}</p>
+
+    <p><strong>Parking:</strong> {{ booking.parking.parking_name }}</p>
+
+    <p><strong>Address:</strong> {{ booking.parking.address }}</p>
+
+    <p><strong>City:</strong> {{ booking.parking.city }}</p>
+
+    <p><strong>Date:</strong> {{ booking.booking_date }}</p>
+
+    <p><strong>Start Time:</strong> {{ booking.start_time }}</p>
+
+    <p><strong>End Time:</strong> {{ booking.end_time }}</p>
+
+    <p><strong>Duration:</strong> {{ total_minutes }} minutes</p>
+
+    <p><strong>Total Price:</strong> ₹{{ total_price|floatformat:2 }}</p>
+
+    <hr>
+
+    <h3>Your parking has been successfully booked.</h3>
+
+    <a href="{% url 'parking_list' %}">
+        Back to Parking List
+    </a>
+
+</body>
+</html>

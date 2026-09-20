@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Check-Out Successful</title>
+</head>
+<body>
+
+    <h1>Check-Out Successful!</h1>
+
+    <p>
+        Booking ID:
+        {{ booking.id }}
+    </p>
+
+    <p>
+        Parking:
+        {{ booking.parking.parking_name }}
+    </p>
+
+    <p>
+        Check-In Time:
+        {{ booking.check_in_time }}
+    </p>
+
+    <p>
+        Check-Out Time:
+        {{ booking.check_out_time }}
+    </p>
+
+    <p>
+        Total Parking Time:
+        {{ booking.total_minutes }} minutes
+    </p>
+
+    <h2>
+        Total Price: ₹{{ booking.total_price }}
+    </h2>
+
+    <p>
+        Your parking session has ended.
+    </p>
+
+    <a href="{% url 'my_bookings' %}">
+        Back to My Bookings
+    </a>
+
+</body>
+</html>

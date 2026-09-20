@@ -1,0 +1,76 @@
+.generate-otp-page {
+    min-height: 100vh;
+    background: #f5f7fb;
+}
+
+.generate-otp-section {
+    min-height: calc(100vh - 75px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.generate-otp-card {
+    width: 100%;
+    max-width: 430px;
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    border: 1px solid #e5e9f0;
+    text-align: center;
+}
+
+.generate-otp-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+.generate-otp-card h1 {
+    color: #172033;
+    margin-bottom: 10px;
+}
+
+.generate-otp-card > p {
+    color: #667085;
+    margin-bottom: 25px;
+}
+
+.generate-otp-card button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    background: #1769e8;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.generate-otp-card button:disabled {
+    opacity: 0.6;
+}
+
+.otp-display {
+    margin: 25px 0;
+    padding: 18px;
+    background: #f0f5ff;
+    border-radius: 10px;
+    color: #1769e8;
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 8px;
+}
+
+.otp-note {
+    font-size: 13px;
+}
+
+.generate-otp-error {
+    color: #d92d20;
+    background: #fef3f2;
+    padding: 10px;
+    border-radius: 7px;
+    margin-bottom: 18px;
+}

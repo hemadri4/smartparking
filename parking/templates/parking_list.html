@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Available Parking</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <h2>Available Parking Spaces</h2>
+
+    <a href="{% url 'my_bookings' %}">
+        My Bookings
+    </a>
+
+    <hr>
+
+    {% for parking in parking_spaces %}
+
+        <div>
+            <h3>{{ parking.parking_name }}</h3>
+
+            <p>
+                Address: {{ parking.address }}
+            </p>
+
+            <p>
+                City: {{ parking.city }}
+            </p>
+
+            <p>
+                Capacity: {{ parking.capacity }}
+            </p>
+
+            <p>
+                Price Per Minute: ₹{{ parking.price_per_minute }}
+            </p>
+
+            <p>
+                <strong>Status:</strong>
+
+                {% if parking.is_available %}
+                    Available
+                {% else %}
+                    Not Available
+                {% endif %}
+            </p>
+
+            <p>
+                Description: {{ parking.description }}
+            </p>
+
+            <a href="{% url 'parking_detail' parking.id %}">
+                View Details
+            </a>
+        </div>
+
+        <hr>
+
+    {% endfor %}
+
+</body>
+</html>

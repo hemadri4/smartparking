@@ -1,0 +1,120 @@
+.my-bookings-list-page {
+    min-height: 100vh;
+    background: #f5f7fb;
+}
+
+.my-bookings-list-section {
+    padding: 50px 6%;
+}
+
+.my-bookings-list-section h1 {
+    color: #172033;
+    margin-bottom: 8px;
+}
+
+.my-bookings-list-section > p {
+    color: #667085;
+    margin-bottom: 30px;
+}
+
+.my-bookings-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.my-booking-card {
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    border: 1px solid #e5e9f0;
+}
+
+.my-booking-card h2 {
+    color: #172033;
+    margin-bottom: 15px;
+}
+
+.my-booking-card p {
+    color: #667085;
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+.booking-status {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 7px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.booking-status.pending {
+    background: #fff4d6;
+    color: #9a6700;
+}
+
+.booking-status.confirmed {
+    background: #e7f7ed;
+    color: #16803c;
+}
+
+.booking-status.cancelled {
+    background: #fdecec;
+    color: #d92d20;
+}
+
+.booking-status.completed {
+    background: #e8eefc;
+    color: #3157a4;
+}
+
+.booking-error {
+    color: #d92d20 !important;
+}
+
+@media (max-width: 900px) {
+    .my-bookings-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .my-bookings-grid {
+        grid-template-columns: 1fr;
+    }
+}
+.booking-action-button {
+    display: block;
+    width: 100%;
+    margin-top: 18px;
+    padding: 12px;
+    text-align: center;
+    background: #1769e8;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.booking-action-button:hover {
+    opacity: 0.9;
+}
+
+.checkout-button {
+    background: #d97706;
+}
+
+.completed-info {
+    margin-top: 18px;
+    padding: 12px;
+    background: #f0fdf4;
+    border-radius: 8px;
+}
+
+.completed-info p {
+    margin: 6px 0;
+    color: #16803c;
+}

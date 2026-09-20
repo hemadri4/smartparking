@@ -1,0 +1,71 @@
+.check-in-page {
+    min-height: 100vh;
+    background: #f5f7fb;
+}
+
+.check-in-section {
+    min-height: calc(100vh - 75px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.check-in-card {
+    width: 100%;
+    max-width: 450px;
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    border: 1px solid #e5e9f0;
+    text-align: center;
+}
+
+.check-in-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+.check-in-card h1 {
+    color: #172033;
+    margin-bottom: 12px;
+}
+
+.check-in-card p {
+    color: #667085;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.check-in-card button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    background: #1769e8;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.check-in-card button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.check-in-success {
+    color: #16803c;
+    background: #e7f7ed;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.check-in-error {
+    color: #d92d20;
+    background: #fef3f2;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}

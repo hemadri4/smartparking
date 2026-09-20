@@ -1,0 +1,192 @@
+.parking-page {
+    min-height: 100vh;
+    background: #f5f7fb;
+}
+
+/* HEADER */
+
+.parking-header {
+    padding: 55px 5%;
+    background: white;
+    border-bottom: 1px solid #e8edf3;
+}
+
+.parking-label {
+    color: #1769e8;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.parking-header h1 {
+    margin: 0 0 10px;
+    color: #172033;
+    font-size: 38px;
+}
+
+.parking-header p:last-child {
+    margin: 0;
+    color: #667085;
+    font-size: 16px;
+}
+
+/* CONTENT */
+
+.parking-content {
+    padding: 45px 5%;
+}
+
+/* GRID */
+
+.parking-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+/* CARD */
+
+.parking-card {
+    padding: 25px;
+
+    background: white;
+    border: 1px solid #e5e9f0;
+    border-radius: 14px;
+
+    box-shadow: 0 5px 20px rgba(20, 35, 60, 0.05);
+}
+
+.parking-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+.parking-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eef5ff;
+    border-radius: 10px;
+
+    font-size: 22px;
+}
+
+.available-badge {
+    padding: 6px 10px;
+
+    color: #027a48;
+    background: #ecfdf3;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.parking-card h2 {
+    margin: 0 0 10px;
+
+    color: #172033;
+    font-size: 19px;
+}
+
+.parking-location {
+    margin-bottom: 22px;
+
+    color: #667085;
+    font-size: 13px;
+}
+
+/* INFO */
+
+.parking-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    padding: 15px 0;
+
+    border-top: 1px solid #edf0f4;
+    border-bottom: 1px solid #edf0f4;
+}
+
+.parking-info div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.parking-info span {
+    color: #98a2b3;
+    font-size: 12px;
+}
+
+.parking-info strong {
+    color: #172033;
+    font-size: 14px;
+}
+
+/* BUTTON */
+
+.view-parking {
+    display: block;
+
+    margin-top: 20px;
+    padding: 12px;
+
+    text-align: center;
+
+    color: white;
+    background: #1769e8;
+
+    border-radius: 7px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.view-parking:hover {
+    background: #0f57c9;
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+
+    .parking-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .parking-header {
+        padding: 40px 5%;
+    }
+
+    .parking-header h1 {
+        font-size: 30px;
+    }
+
+    .parking-content {
+        padding: 30px 5%;
+    }
+
+    .parking-grid {
+        grid-template-columns: 1fr;
+    }
+}

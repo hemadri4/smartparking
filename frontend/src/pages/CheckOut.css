@@ -1,0 +1,90 @@
+.check-out-page {
+    min-height: 100vh;
+    background: #f5f7fb;
+}
+
+.check-out-section {
+    min-height: calc(100vh - 75px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.check-out-card {
+    width: 100%;
+    max-width: 450px;
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    border: 1px solid #e5e9f0;
+    text-align: center;
+}
+
+.check-out-icon,
+.check-out-success-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+.check-out-card h1 {
+    color: #172033;
+    margin-bottom: 12px;
+}
+
+.check-out-card > p {
+    color: #667085;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.check-out-card button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    background: #1769e8;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.check-out-card button:disabled {
+    opacity: 0.6;
+}
+
+.check-out-error {
+    color: #d92d20;
+    background: #fef3f2;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.bill-box {
+    margin: 25px 0;
+    padding: 18px;
+    background: #f8f9fc;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.bill-box div {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #e5e9f0;
+}
+
+.bill-box div:last-child {
+    border-bottom: none;
+}
+
+.bill-box span {
+    color: #667085;
+}
+
+.bill-box strong {
+    color: #172033;
+}

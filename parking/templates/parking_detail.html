@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Parking Details</title>
+</head>
+
+<body>
+
+    <h2>Parking Details</h2>
+
+    <h3>{{ parking.parking_name }}</h3>
+
+    <p>Address: {{ parking.address }}</p>
+    <p>City: {{ parking.city }}</p>
+    <p>Capacity: {{ parking.capacity }}</p>
+    <p>Price Per Hour: ₹{{ parking.price_per_hour }}</p>
+    <p>Description: {{ parking.description }}</p>
+    <a href="https://www.google.com/maps?q={{ parking.latitude }},{{ parking.longitude }}" target="_blank">
+    View Location on Google Maps
+</a>
+
+<br><br>
+
+<a href="{% url 'create_booking' parking.id %}">
+    Book This Parking
+</a>
+
+    <a href="{% url 'parking_list' %}">Back to Parking List</a>
+    
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OTP Verified</title>
+</head>
+<body>
+
+    <h1>OTP Verified Successfully!</h1>
+
+    <p>Booking ID: {{ booking.id }}</p>
+
+    <p>
+        Parking:
+        {{ booking.parking.parking_name }}
+    </p>
+
+    <p>
+        Status:
+        {{ booking.status }}
+    </p>
+
+    <p>
+        Your parking booking has been verified.
+    </p>
+
+    <a href="{% url 'my_bookings' %}">
+        Back to My Bookings
+    </a>
+
+</body>
+</html>

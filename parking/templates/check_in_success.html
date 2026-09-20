@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Check-In Successful</title>
+</head>
+<body>
+
+    <h1>Check-In Successful!</h1>
+
+    <p>Booking ID: {{ booking.id }}</p>
+
+    <p>
+        Parking:
+        {{ booking.parking.parking_name }}
+    </p>
+
+    <p>
+        Check-In Time:
+        {{ booking.check_in_time }}
+    </p>
+
+    <p>
+        Your parking session has started.
+    </p>
+
+    <a href="{% url 'my_bookings' %}">
+        Back to My Bookings
+    </a>
+
+</body>
+</html>
