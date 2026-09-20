@@ -78,9 +78,12 @@ function OwnerParking() {
             fetchParking();
 
         } catch (err) {
+            console.log("ADD PARKING ERROR:", err);
+
             setError(
-                err.response?.data?.error ||
-                "Unable to add parking space."
+                err.response?.data
+                    ? JSON.stringify(err.response.data)
+                    : err.message
             );
         }
     };
@@ -92,6 +95,7 @@ function OwnerParking() {
             <section className="owner-parking-section">
 
                 <h1>My Parking Spaces</h1>
+
                 <p>Add and manage your parking spaces.</p>
 
                 {message && (
@@ -115,6 +119,7 @@ function OwnerParking() {
                         <form onSubmit={handleSubmit}>
 
                             <label>Parking Name</label>
+
                             <input
                                 type="text"
                                 name="parking_name"
@@ -124,6 +129,7 @@ function OwnerParking() {
                             />
 
                             <label>Address</label>
+
                             <textarea
                                 name="address"
                                 value={formData.address}
@@ -132,6 +138,7 @@ function OwnerParking() {
                             />
 
                             <label>City</label>
+
                             <input
                                 type="text"
                                 name="city"
@@ -144,6 +151,7 @@ function OwnerParking() {
 
                                 <div>
                                     <label>Latitude</label>
+
                                     <input
                                         type="number"
                                         step="any"
@@ -156,6 +164,7 @@ function OwnerParking() {
 
                                 <div>
                                     <label>Longitude</label>
+
                                     <input
                                         type="number"
                                         step="any"
@@ -169,6 +178,7 @@ function OwnerParking() {
                             </div>
 
                             <label>Capacity</label>
+
                             <input
                                 type="number"
                                 min="1"
@@ -179,6 +189,7 @@ function OwnerParking() {
                             />
 
                             <label>Price Per Minute (₹)</label>
+
                             <input
                                 type="number"
                                 min="0"
@@ -190,6 +201,7 @@ function OwnerParking() {
                             />
 
                             <label>Description</label>
+
                             <textarea
                                 name="description"
                                 value={formData.description}
@@ -201,6 +213,7 @@ function OwnerParking() {
                             </button>
 
                         </form>
+
                     </div>
 
                     <div className="parking-space-list">
@@ -221,6 +234,7 @@ function OwnerParking() {
                                 className="owner-parking-card"
                                 key={parking.id}
                             >
+
                                 <h3>
                                     {parking.parking_name}
                                 </h3>
@@ -252,12 +266,14 @@ function OwnerParking() {
                                         ? "Available"
                                         : "Unavailable"}
                                 </span>
+
                             </div>
                         ))}
 
                     </div>
 
                 </div>
+
             </section>
         </div>
     );
