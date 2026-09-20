@@ -335,12 +335,10 @@ def update_booking_status_api(request, booking_id):
 @api_view(['GET'])
 @ensure_csrf_cookie
 def csrf_api(request):
-
     return Response({
         'message': 'CSRF cookie set',
         'csrfToken': get_token(request)
     })
-
 
 # =========================
 # GENERATE OTP
