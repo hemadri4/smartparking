@@ -1,45 +1,53 @@
 .about-page {
     min-height: 100vh;
-    background: #f5f7fb;
+    background: #f6f8fc;
+    font-family: "Poppins", "Segoe UI", Arial, sans-serif;
 }
 
 .about-section {
+    min-height: calc(100vh - 75px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 70px 6%;
-    text-align: center;
 }
 
 .about-content {
-    max-width: 900px;
-    margin: auto;
+    width: 100%;
+    max-width: 1000px;
+    text-align: center;
 }
 
 .about-logo {
-    width: 90px;
-    height: 90px;
+    width: 95px;
+    height: 95px;
     object-fit: contain;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
+    filter: drop-shadow(0 8px 15px rgba(23, 105, 232, 0.12));
 }
 
 .about-label {
+    margin: 0 0 12px;
     color: #1769e8;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    margin-bottom: 12px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
 }
 
 .about-content h1 {
-    font-size: 42px;
+    margin: 0 0 20px;
     color: #172033;
-    margin-bottom: 20px;
+    font-size: 44px;
+    line-height: 1.2;
+    font-weight: 800;
 }
 
 .about-description {
-    max-width: 700px;
-    margin: auto;
+    max-width: 720px;
+    margin: 0 auto;
     color: #667085;
-    line-height: 1.7;
     font-size: 16px;
+    line-height: 1.8;
 }
 
 .about-features {
@@ -50,33 +58,72 @@
 }
 
 .about-features div {
-    background: white;
-    padding: 28px 20px;
-    border-radius: 12px;
-    border: 1px solid #e5e9f0;
+    padding: 30px 24px;
+    background: #ffffff;
+    border: 1px solid #e5eaf3;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(30, 50, 90, 0.06);
+    transition: 0.25s ease;
+}
+
+.about-features div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 35px rgba(30, 50, 90, 0.1);
 }
 
 .about-features span {
-    font-size: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #eef5ff;
+    font-size: 28px;
 }
 
 .about-features h3 {
-    margin: 15px 0 8px;
+    margin: 18px 0 9px;
     color: #172033;
+    font-size: 18px;
+    font-weight: 700;
 }
 
 .about-features p {
+    margin: 0;
     color: #667085;
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
+    .about-section {
+        padding: 55px 20px;
+    }
+
     .about-content h1 {
-        font-size: 32px;
+        font-size: 36px;
     }
 
     .about-features {
         grid-template-columns: 1fr;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 500px) {
+    .about-content h1 {
+        font-size: 30px;
+    }
+
+    .about-description {
+        font-size: 14px;
+    }
+
+    .about-logo {
+        width: 80px;
+        height: 80px;
     }
 }

@@ -1,198 +1,94 @@
 .navbar {
-    
-    height: 76px;
+    min-height: 74px;
     padding: 0 5%;
-
     display: flex;
     align-items: center;
-    justify-content: space-between;
-
+    gap: 24px;
     background: #ffffff;
-    border-bottom: 1px solid #e8edf3;
-
+    border-bottom: 1px solid #e7ebf2;
     position: relative;
     z-index: 100;
+    font-family: "Poppins", "Segoe UI", Arial, sans-serif;
 }
 
 /* LOGO */
 
 .navbar-logo {
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     text-decoration: none;
 }
 
 .navbar-logo img {
-    width: 92px;
-    height: 80px;
+    width: 82px;
+    height: 68px;
+    object-fit: contain;
     display: block;
 }
 
-/* CENTER LINKS */
+/* NAVIGATION */
 
 .navbar-links {
     display: flex;
     align-items: center;
-    gap: 36px;
+    gap: 25px;
     margin-left: auto;
-    margin-right: 45px;
 }
 
 .navbar-links a {
-    text-decoration: none;
+    position: relative;
     color: #344054;
-
-    font-size: 15px;
+    text-decoration: none;
+    font-size: 14px;
     font-weight: 600;
-
+    white-space: nowrap;
     transition: color 0.2s ease;
+}
+
+.navbar-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -7px;
+    width: 0;
+    height: 2px;
+    background: #1769e8;
+    transition: width 0.2s ease;
 }
 
 .navbar-links a:hover {
     color: #1769e8;
 }
 
-/* RIGHT BUTTONS */
-
-.navbar-buttons {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+.navbar-links a:hover::after {
+    width: 100%;
 }
 
-.navbar-login,
-.navbar-signup {
-    height: 40px;
+/* SEARCH */
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 0 20px;
-
-    border-radius: 7px;
-
-    text-decoration: none;
-
-    font-size: 14px;
-    font-weight: 600;
-
-    transition: all 0.2s ease;
-}
-
-/* LOGIN */
-
-.navbar-login {
-    color: #1769e8;
-    background: #ffffff;
-
-    border: 1px solid #1769e8;
-}
-
-.navbar-login:hover {
-    background: #f0f6ff;
-}
-
-/* SIGN UP */
-
-.navbar-signup {
-    color: #ffffff;
-    background: #1769e8;
-
-    border: 1px solid #1769e8;
-}
-
-.navbar-signup:hover {
-    background: #0f57c9;
-    border-color: #0f57c9;
-}
-
-/* TABLET */
-
-@media (max-width: 900px) {
-
-    .navbar {
-        padding: 0 4%;
-    }
-
-    .navbar-links {
-        gap: 22px;
-        margin-right: 25px;
-    }
-
-    .navbar-links a {
-        font-size: 14px;
-    }
-
-    .navbar-login,
-    .navbar-signup {
-        padding: 0 15px;
-    }
-}
-
-/* MOBILE */
-
-@media (max-width: 650px) {
-
-    .navbar {
-        height: auto;
-        min-height: 70px;
-
-        padding: 12px 5%;
-
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-
-    .navbar-logo img {
-        width: 80px;
-    }
-
-    .navbar-links {
-        order: 3;
-
-        width: 100%;
-
-        margin: 0;
-
-        justify-content: center;
-
-        gap: 22px;
-
-        overflow-x: auto;
-        padding-bottom: 4px;
-    }
-
-    .navbar-links a {
-        white-space: nowrap;
-        font-size: 13px;
-    }
-
-    .navbar-buttons {
-        margin-left: auto;
-    }
-
-    .navbar-login,
-    .navbar-signup {
-        height: 36px;
-        padding: 0 13px;
-        font-size: 13px;
-    }
-}
 .navbar-search {
     display: flex;
     align-items: center;
-    margin-left: 20px;
+    flex-shrink: 0;
 }
 
 .navbar-search input {
-    width: 190px;
+    width: 165px;
     height: 38px;
+    box-sizing: border-box;
     padding: 0 12px;
-    border: 1px solid #d0d5dd;
-    border-radius: 7px 0 0 7px;
+    border: 1px solid #d9dee7;
+    border-right: none;
+    border-radius: 8px 0 0 8px;
     outline: none;
+    background: #ffffff;
+    color: #172033;
     font-size: 13px;
+}
+
+.navbar-search input::placeholder {
+    color: #98a2b3;
 }
 
 .navbar-search input:focus {
@@ -200,21 +96,164 @@
 }
 
 .navbar-search button {
-    height: 38px;
     width: 42px;
+    height: 38px;
     border: none;
-    border-radius: 0 7px 7px 0;
+    border-radius: 0 8px 8px 0;
     background: #1769e8;
-    color: white;
+    color: #ffffff;
     cursor: pointer;
+    font-size: 15px;
+    transition: background 0.2s ease;
 }
 
-@media (max-width: 1000px) {
-    .navbar-search {
-        margin-left: 10px;
+.navbar-search button:hover {
+    background: #0f57c9;
+}
+
+/* BUTTONS */
+
+.navbar-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.navbar-login,
+.navbar-signup {
+    height: 39px;
+    padding: 0 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: 0.2s ease;
+}
+
+/* LOGIN / LOGOUT */
+
+.navbar-login {
+    color: #1769e8;
+    background: #ffffff;
+    border: 1px solid #1769e8;
+}
+
+.navbar-login:hover {
+    background: #eef5ff;
+}
+
+/* SIGN UP */
+
+.navbar-signup {
+    color: #ffffff;
+    background: #1769e8;
+    border: 1px solid #1769e8;
+}
+
+.navbar-signup:hover {
+    background: #0f57c9;
+    border-color: #0f57c9;
+    transform: translateY(-1px);
+}
+
+/* TABLET */
+
+@media (max-width: 1150px) {
+    .navbar {
+        gap: 15px;
+        padding: 0 3%;
+    }
+
+    .navbar-links {
+        gap: 17px;
+    }
+
+    .navbar-links a {
+        font-size: 13px;
     }
 
     .navbar-search input {
-        width: 140px;
+        width: 130px;
+    }
+
+    .navbar-login,
+    .navbar-signup {
+        padding: 0 13px;
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+    .navbar {
+        min-height: 70px;
+        padding: 10px 5%;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .navbar-logo img {
+        width: 75px;
+        height: 58px;
+    }
+
+    .navbar-buttons {
+        margin-left: auto;
+    }
+
+    .navbar-search {
+        order: 3;
+        width: 100%;
+    }
+
+    .navbar-search input {
+        flex: 1;
+        width: auto;
+    }
+
+    .navbar-links {
+        order: 4;
+        width: 100%;
+        margin: 0;
+        padding: 5px 0 8px;
+        justify-content: flex-start;
+        gap: 22px;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .navbar-links::-webkit-scrollbar {
+        display: none;
+    }
+
+    .navbar-links a {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 9px 15px;
+    }
+
+    .navbar-logo img {
+        width: 68px;
+        height: 55px;
+    }
+
+    .navbar-login,
+    .navbar-signup {
+        height: 36px;
+        padding: 0 11px;
+        font-size: 12px;
+    }
+
+    .navbar-links {
+        gap: 20px;
     }
 }

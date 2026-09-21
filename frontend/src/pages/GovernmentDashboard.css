@@ -1,62 +1,92 @@
 .government-dashboard-page {
     min-height: 100vh;
-    background: #f5f7fb;
+    background: #f6f8fc;
+    font-family: "Poppins", "Segoe UI", Arial, sans-serif;
 }
 
 .government-dashboard-section {
-    padding: 50px 6%;
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 55px 6%;
 }
 
 .government-dashboard-section h1 {
+    margin: 0 0 8px;
     color: #172033;
-    margin-bottom: 8px;
+    font-size: 34px;
+    font-weight: 800;
 }
 
 .government-dashboard-section > p {
+    margin: 0 0 35px;
     color: #667085;
-    margin-bottom: 30px;
+    font-size: 14px;
 }
 
 .government-stats {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 20px;
 }
 
 .government-card {
-    background: white;
     padding: 25px;
-    border-radius: 12px;
-    border: 1px solid #e5e9f0;
+    background: #ffffff;
+    border: 1px solid #e5eaf3;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(30, 50, 90, 0.06);
+    transition: 0.25s ease;
+}
+
+.government-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(30, 50, 90, 0.1);
 }
 
 .government-card span {
     display: block;
-    color: #667085;
-    font-size: 14px;
     margin-bottom: 12px;
+    color: #667085;
+    font-size: 13px;
+    font-weight: 600;
 }
 
 .government-card strong {
-    font-size: 30px;
     color: #1769e8;
+    font-size: 32px;
+    font-weight: 800;
 }
 
 .government-error {
-    padding: 12px;
-    border-radius: 8px;
+    margin-bottom: 25px;
+    padding: 13px 14px;
+    border: 1px solid #ffd6d2;
+    border-radius: 10px;
     background: #fef3f2;
     color: #d92d20;
+    font-size: 13px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
     .government-stats {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
 @media (max-width: 600px) {
+    .government-dashboard-section {
+        padding: 40px 20px;
+    }
+
+    .government-dashboard-section h1 {
+        font-size: 28px;
+    }
+
     .government-stats {
         grid-template-columns: 1fr;
+    }
+
+    .government-card {
+        padding: 22px;
     }
 }

@@ -1,6 +1,7 @@
 .verify-otp-page {
     min-height: 100vh;
-    background: #f5f7fb;
+    background: #f6f8fc;
+    font-family: "Poppins", "Segoe UI", Arial, sans-serif;
 }
 
 .verify-otp-section {
@@ -8,78 +9,141 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px 20px;
+    padding: 50px 20px;
 }
 
 .verify-otp-card {
     width: 100%;
     max-width: 430px;
-    background: white;
-    padding: 40px;
-    border-radius: 16px;
-    border: 1px solid #e5e9f0;
+    padding: 42px;
+    background: #ffffff;
+    border: 1px solid #e5eaf3;
+    border-radius: 22px;
     text-align: center;
+    box-shadow: 0 15px 40px rgba(30, 50, 90, 0.08);
 }
 
 .otp-icon {
-    font-size: 45px;
-    margin-bottom: 15px;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    background: #eef5ff;
+    border-radius: 20px;
+    font-size: 34px;
 }
 
 .verify-otp-card h1 {
+    margin: 0 0 10px;
     color: #172033;
-    margin-bottom: 10px;
+    font-size: 30px;
+    font-weight: 800;
 }
 
 .verify-otp-card > p {
+    margin: 0 0 25px;
     color: #667085;
-    margin-bottom: 25px;
+    font-size: 14px;
+    line-height: 1.6;
 }
 
 .verify-otp-card form {
+    display: flex;
+    flex-direction: column;
     text-align: left;
 }
 
 .verify-otp-card label {
-    display: block;
     margin-bottom: 8px;
     color: #344054;
+    font-size: 13px;
     font-weight: 600;
 }
 
 .verify-otp-card input {
     width: 100%;
-    padding: 13px;
-    border: 1px solid #d0d5dd;
-    border-radius: 8px;
-    font-size: 20px;
-    text-align: center;
-    letter-spacing: 6px;
+    box-sizing: border-box;
+    padding: 15px;
     margin-bottom: 20px;
+    border: 1px solid #d9dfeb;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #172033;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 9px;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.verify-otp-card input:focus {
+    border-color: #1769e8;
+    box-shadow: 0 0 0 3px rgba(23, 105, 232, 0.1);
+}
+
+.verify-otp-card input::placeholder {
+    color: #98a2b3;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0;
 }
 
 .verify-otp-card button {
     width: 100%;
-    padding: 13px;
+    padding: 14px;
     border: none;
-    border-radius: 8px;
-    background: #1769e8;
-    color: white;
-    font-size: 15px;
-    font-weight: 600;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #1769e8, #4f67e8);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
     cursor: pointer;
+    box-shadow: 0 8px 20px rgba(23, 105, 232, 0.22);
+    transition: 0.25s ease;
+}
+
+.verify-otp-card button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(23, 105, 232, 0.3);
 }
 
 .verify-otp-card button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+    transform: none;
 }
 
 .otp-error {
-    color: #d92d20;
-    background: #fef3f2;
-    padding: 10px;
-    border-radius: 7px;
     margin-bottom: 18px;
-    font-size: 14px;
+    padding: 12px;
+    border: 1px solid #ffd6d2;
+    border-radius: 9px;
+    background: #fef3f2;
+    color: #d92d20;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+@media (max-width: 550px) {
+    .verify-otp-section {
+        padding: 35px 15px;
+        align-items: flex-start;
+    }
+
+    .verify-otp-card {
+        padding: 30px 22px;
+        border-radius: 17px;
+    }
+
+    .verify-otp-card h1 {
+        font-size: 27px;
+    }
+
+    .verify-otp-card input {
+        font-size: 22px;
+        letter-spacing: 7px;
+    }
 }

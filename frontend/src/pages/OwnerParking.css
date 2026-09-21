@@ -1,62 +1,89 @@
 .owner-parking-page {
     min-height: 100vh;
-    background: #f5f7fb;
+    background: #f6f8fc;
+    font-family: "Poppins", "Segoe UI", Arial, sans-serif;
 }
 
 .owner-parking-section {
-    padding: 50px 6%;
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 55px 6%;
 }
 
 .owner-parking-section h1 {
+    margin: 0 0 8px;
     color: #172033;
-    margin-bottom: 8px;
+    font-size: 34px;
+    font-weight: 800;
 }
 
 .owner-parking-section > p {
+    margin: 0 0 30px;
     color: #667085;
-    margin-bottom: 30px;
+    font-size: 14px;
 }
 
 .owner-parking-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 25px;
+    align-items: start;
 }
 
 .add-parking-card,
 .parking-space-list {
-    background: white;
     padding: 30px;
-    border-radius: 14px;
-    border: 1px solid #e5e9f0;
+    background: #ffffff;
+    border: 1px solid #e5eaf3;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(30, 50, 90, 0.06);
 }
 
 .add-parking-card h2,
 .parking-space-list h2 {
+    margin: 0 0 25px;
     color: #172033;
-    margin-bottom: 25px;
+    font-size: 21px;
+    font-weight: 750;
+}
+
+.add-parking-card form {
+    display: flex;
+    flex-direction: column;
 }
 
 .add-parking-card form label {
     display: block;
-    margin-bottom: 7px;
+    margin-bottom: 8px;
     color: #344054;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
 }
 
 .add-parking-card input,
 .add-parking-card textarea {
     width: 100%;
-    padding: 11px;
+    box-sizing: border-box;
+    padding: 12px 13px;
     margin-bottom: 18px;
-    border: 1px solid #d0d5dd;
-    border-radius: 7px;
+    border: 1px solid #d9dfeb;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #172033;
     font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.add-parking-card input:focus,
+.add-parking-card textarea:focus {
+    border-color: #1769e8;
+    box-shadow: 0 0 0 3px rgba(23, 105, 232, 0.1);
 }
 
 .add-parking-card textarea {
-    min-height: 80px;
+    min-height: 85px;
     resize: vertical;
 }
 
@@ -66,63 +93,96 @@
     gap: 15px;
 }
 
+.location-row > div {
+    min-width: 0;
+}
+
 .add-parking-card button {
     width: 100%;
-    padding: 13px;
+    margin-top: 5px;
+    padding: 14px;
     border: none;
-    border-radius: 8px;
-    background: #1769e8;
-    color: white;
-    font-weight: 600;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #1769e8, #4f67e8);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
     cursor: pointer;
+    box-shadow: 0 8px 20px rgba(23, 105, 232, 0.22);
+    transition: 0.25s ease;
+}
+
+.add-parking-card button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(23, 105, 232, 0.3);
 }
 
 .owner-parking-card {
     padding: 20px;
-    border: 1px solid #e5e9f0;
-    border-radius: 10px;
     margin-bottom: 15px;
+    background: #ffffff;
+    border: 1px solid #e5eaf3;
+    border-radius: 13px;
+    transition: 0.25s ease;
+}
+
+.owner-parking-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(30, 50, 90, 0.07);
+}
+
+.owner-parking-card:last-child {
+    margin-bottom: 0;
 }
 
 .owner-parking-card h3 {
+    margin: 0 0 12px;
     color: #172033;
-    margin-bottom: 12px;
+    font-size: 18px;
+    font-weight: 750;
 }
 
 .owner-parking-card p {
+    margin: 8px 0;
     color: #667085;
-    font-size: 14px;
-    margin: 7px 0;
+    font-size: 13px;
+    line-height: 1.5;
 }
 
 .owner-parking-card span {
     display: inline-block;
     margin-top: 10px;
     padding: 6px 12px;
+    border: 1px solid #b7ebc6;
     border-radius: 20px;
     background: #e7f7ed;
     color: #16803c;
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .owner-parking-success {
-    padding: 12px;
     margin-bottom: 20px;
-    border-radius: 8px;
+    padding: 13px 14px;
+    border: 1px solid #b7ebc6;
+    border-radius: 10px;
     background: #e7f7ed;
     color: #16803c;
+    font-size: 13px;
 }
 
 .owner-parking-error {
-    padding: 12px;
     margin-bottom: 20px;
-    border-radius: 8px;
+    padding: 13px 14px;
+    border: 1px solid #ffd6d2;
+    border-radius: 10px;
     background: #fef3f2;
     color: #d92d20;
+    font-size: 13px;
+    line-height: 1.5;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 950px) {
     .owner-parking-layout {
         grid-template-columns: 1fr;
     }
@@ -130,7 +190,17 @@
 
 @media (max-width: 600px) {
     .owner-parking-section {
-        padding: 35px 5%;
+        padding: 40px 20px;
+    }
+
+    .owner-parking-section h1 {
+        font-size: 28px;
+    }
+
+    .add-parking-card,
+    .parking-space-list {
+        padding: 22px;
+        border-radius: 15px;
     }
 
     .location-row {

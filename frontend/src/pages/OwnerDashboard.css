@@ -1,20 +1,26 @@
 .owner-dashboard-page {
     min-height: 100vh;
-    background: #f5f7fb;
+    background: #f6f8fc;
+    font-family: "Poppins", "Segoe UI", Arial, sans-serif;
 }
 
 .owner-dashboard-section {
-    padding: 50px 6%;
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 55px 6%;
 }
 
 .owner-dashboard-section h1 {
+    margin: 0 0 8px;
     color: #172033;
-    margin-bottom: 8px;
+    font-size: 34px;
+    font-weight: 800;
 }
 
 .owner-dashboard-section > p {
+    margin: 0 0 35px;
     color: #667085;
-    margin-bottom: 30px;
+    font-size: 14px;
 }
 
 .owner-stats {
@@ -25,42 +31,89 @@
 }
 
 .owner-stat-card {
-    background: white;
-    padding: 25px;
-    border-radius: 14px;
-    border: 1px solid #e5e9f0;
+    padding: 26px;
+    background: #ffffff;
+    border: 1px solid #e5eaf3;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(30, 50, 90, 0.06);
+    transition: 0.25s ease;
+}
+
+.owner-stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(30, 50, 90, 0.1);
 }
 
 .owner-stat-card span {
     display: block;
-    color: #667085;
-    font-size: 14px;
     margin-bottom: 12px;
+    color: #667085;
+    font-size: 13px;
+    font-weight: 600;
 }
 
 .owner-stat-card strong {
-    font-size: 30px;
     color: #172033;
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.owner-dashboard-actions {
+    padding: 25px;
+    background: #ffffff;
+    border: 1px solid #e5eaf3;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(30, 50, 90, 0.05);
 }
 
 .owner-dashboard-actions a {
     display: inline-block;
-    padding: 13px 20px;
-    background: #1769e8;
-    color: white;
+    padding: 14px 22px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #1769e8, #4f67e8);
+    color: #ffffff;
     text-decoration: none;
-    border-radius: 8px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 700;
+    box-shadow: 0 8px 20px rgba(23, 105, 232, 0.22);
+    transition: 0.25s ease;
 }
 
-@media (max-width: 900px) {
+.owner-dashboard-actions a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(23, 105, 232, 0.3);
+}
+
+@media (max-width: 1000px) {
     .owner-stats {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 600px) {
+    .owner-dashboard-section {
+        padding: 40px 20px;
+    }
+
+    .owner-dashboard-section h1 {
+        font-size: 28px;
+    }
+
     .owner-stats {
         grid-template-columns: 1fr;
+    }
+
+    .owner-stat-card {
+        padding: 22px;
+    }
+
+    .owner-dashboard-actions {
+        padding: 20px;
+    }
+
+    .owner-dashboard-actions a {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
     }
 }
