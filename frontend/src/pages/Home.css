@@ -461,7 +461,6 @@
     margin: 0;
 }
 
-
 /* ============================= */
 /* TABLET */
 /* ============================= */
@@ -489,11 +488,12 @@
 @media (max-width: 900px) {
 
     .home-hero {
-        min-height: 580px;
+        min-height: 600px;
 
         padding: 60px 6%;
 
-        background-position: center;
+        background-position: 65% center;
+        background-size: cover;
     }
 
     .home-content {
@@ -505,32 +505,81 @@
 @media (max-width: 650px) {
 
     .home-hero {
-        min-height: 560px;
+        min-height: 620px;
 
-        padding: 50px 5%;
+        padding: 45px 5%;
 
-        background-position: 60% center;
+        /*
+         * Keep the important part of the image visible
+         * on narrow mobile screens.
+         */
+        background-position: 68% center;
+        background-size: cover;
+
+        /*
+         * Stronger dark overlay for readable text
+         */
+        background-image:
+            linear-gradient(
+                90deg,
+                rgba(0, 0, 0, 0.58),
+                rgba(0, 0, 0, 0.30),
+                rgba(0, 0, 0, 0.08)
+            ),
+            url("/home-background.png");
+    }
+
+    .home-content {
+        max-width: 100%;
+    }
+
+    .home-label {
+        font-size: 15px;
+
+        letter-spacing: 1.5px;
+
+        margin-bottom: 16px;
     }
 
     .home-content h1 {
         font-size: 38px;
 
+        line-height: 1.1;
+
         letter-spacing: -0.8px;
+
+        margin-bottom: 18px;
     }
 
     .home-description {
         font-size: 15px;
+
+        line-height: 1.6;
+
+        max-width: 100%;
     }
 
     .home-buttons {
         flex-direction: column;
 
+        width: 100%;
+
         max-width: 220px;
+
+        gap: 12px;
+
+        margin-top: 25px;
     }
 
     .home-primary,
     .home-secondary {
+        width: 100%;
+
+        box-sizing: border-box;
+
         text-align: center;
+
+        padding: 14px 20px;
     }
 
     .home-features,
